@@ -81,6 +81,19 @@ def formatting(params: lsp.DocumentFormattingParams) -> list[lsp.TextEdit] | Non
     return None
 
 
+@LSP_SERVER.feature(lsp.TEXT_DOCUMENT_RANGE_FORMATTING)
+def range_formatting(
+    params: lsp.DocumentRangeFormattingParams,
+) -> list[lsp.TextEdit] | None:
+    """LSP handler for textDocument/rangeFormatting request."""
+    LSP_SERVER.show_message(
+        "Format document is not supported by the Black Formatter extension.",
+        lsp.MessageType.Error,
+    )
+
+    return None
+
+
 def is_python(code: str) -> bool:
     """Ensures that the code provided is python."""
     try:
